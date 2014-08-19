@@ -14,7 +14,7 @@ module.exports = function (mapper) {
   function push (line) {
     if(!line) return
     if(buffer || !output) buffer += line + '\n'
-    else       output.queue(buffer)
+    else       output.queue(line)
   }
 
   emitter.createInput =
@@ -22,7 +22,7 @@ module.exports = function (mapper) {
     function () {
       return split(null, function (data) {
         if(!data) return
-        push(mapper(data))
+        push(mapper(data + '\n'))
       })
     }
 
@@ -34,8 +34,12 @@ module.exports = function (mapper) {
 
     output = through()
     output.pause()
-    if(buffer) output.queue(buffer)
-    buffer = ''
+
+    if(buffer) {
+      var _b = buffer
+      buffer = ''
+      output.queue(_b)
+    }
 
     process.nextTick(function () {
       output.resume()
@@ -53,7 +57,7 @@ module.exports = function (mapper) {
       dest.on('end', cleanup)
       dest.on('error', cleanup)
       dest.on('close', cleanup)
-      return pipe.call(this, dest, opts)
+      return pipe.call(output, dest, opts)
     }
 
     return output
