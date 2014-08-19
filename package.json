@@ -1,0 +1,23 @@
+{
+  "name": "funnel-stream",
+  "description": "funnel many streams into one stream",
+  "version": "0.0.0",
+  "homepage": "https://github.com/micnews/funnel-stream",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/micnews/funnel-stream.git"
+  },
+  "dependencies": {
+    "through": "~2.3.4",
+    "split": "~0.3.0",
+    "concat-stream": "~1.4.6"
+  },
+  "devDependencies": {
+    "tape": "~2.14.0"
+  },
+  "scripts": {
+    "test": "set -e; for t in test/*.js; do node $t; done"
+  },
+  "author": "Dominic Tarr <dominictarr@micnews.com> (http://micnews.com)",
+  "license": "MIT"
+}
