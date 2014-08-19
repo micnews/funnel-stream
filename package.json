@@ -1,7 +1,7 @@
 {
   "name": "funnel-stream",
   "description": "funnel many streams into one stream",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/micnews/funnel-stream",
   "repository": {
     "type": "git",
